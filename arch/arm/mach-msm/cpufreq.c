@@ -29,7 +29,9 @@
 #include <mach/socinfo.h>
 
 #include "acpuclock.h"
-
+#ifdef CONFIG_PERFLOCK
+#include <mach/perflock.h>
+#endif
 
 #ifdef CONFIG_SMP
 struct cpufreq_work_struct {
@@ -221,8 +223,8 @@ static int __cpuinit msm_cpufreq_init(struct cpufreq_policy *policy)
 	init_completion(&cpu_work->complete);
 #endif
 
-		policy->min = 384000;
-		policy->max = 1512000;
+		policy->min = 192000;
+		policy->max = 2106000;
 
 	return 0;
 }

@@ -3018,7 +3018,7 @@ static int tabla_hw_params(struct snd_pcm_substream *substream,
 		tx_fs_rate = 0x03;
 		rx_fs_rate = 0x60;
 		break;
-	case 96000;
+	case 96000:
 		tx_fs_rate = 0x04;
 		rx_fs_rate = 0x80;
 		break;
