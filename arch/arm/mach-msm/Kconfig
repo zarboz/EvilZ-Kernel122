@@ -1464,6 +1464,14 @@ config MSM_DALRPC_TEST
 	default m
 	help
 	  Exercises DAL RPC calls to QDSP6.
+	  
+config MSM_MPDEC
+        bool "Enable kernel based mpdecision"
+   depends on MSM_SMP
+      default n
+       help
+      This enables kernel based multi core control.
+	(up/down hotplug based on load)
 
 if CPU_FREQ_MSM
 
@@ -2286,6 +2294,12 @@ config MSM_CPU_MAX_CLK_1DOT89GHZ
 	default n
 	help
 	  To support the Max 1.89Ghz.
+	  
+config MSM_CPU_MAX_CLK_1DOT7GHZ
+	bool "CPU Max 1.7ghz clk support"
+	default n
+	help
+	  To support the Max 1.7Ghz.
 
 config MSM_CPU_MAX_CLK_1DOT5GHZ
 	bool "CPU Max 1.5Ghz clk support"
