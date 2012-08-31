@@ -74,7 +74,7 @@ static unsigned int NwNs_Threshold[4] = {35, 0, 0, 5};
 static unsigned int TwTs_Threshold[4] = {250, 0, 0, 250};
 
 extern unsigned int get_rq_info(void);
-extern unsigned long acpuclk_8x60_get_rate(int);
+extern unsigned long acpuclk_8960_get_rate(int);
 
 unsigned int state = MSM_MPDEC_IDLE;
 bool was_paused = false;
@@ -113,7 +113,7 @@ static int mp_decision(void)
 		if ((nr_cpu_online < 2) && (rq_depth >= NwNs_Threshold[index])) {
 			if (total_time >= TwTs_Threshold[index]) {
 				new_state = MSM_MPDEC_UP;
-                                if (acpuclk_8x60_get_rate((CONFIG_NR_CPUS - 2)) <=
+                                if (acpuclk_8960_get_rate((CONFIG_NR_CPUS - 2)) <=
                                     msm_mpdec_tuners_ins.idle_freq)
                                         new_state = MSM_MPDEC_IDLE;
 			}
@@ -121,7 +121,7 @@ static int mp_decision(void)
 			if (total_time >= TwTs_Threshold[index+1] ) {
 				new_state = MSM_MPDEC_DOWN;
                                 if (cpu_online((CONFIG_NR_CPUS - 1)))
-		                        if (acpuclk_8x60_get_rate((CONFIG_NR_CPUS - 1)) >
+		                        if (acpuclk_8960_get_rate((CONFIG_NR_CPUS - 1)) >
                                             msm_mpdec_tuners_ins.idle_freq)
 			                        new_state = MSM_MPDEC_IDLE;
 			}
