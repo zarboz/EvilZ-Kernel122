@@ -92,6 +92,9 @@ static void set_acpuclk_foot_print(unsigned cpu, unsigned state)
 #ifdef CONFIG_MSM_CPU_MAX_CLK_1DOT89GHZ
 	unsigned *status = (unsigned *)(CPU_FOOT_PRINT_BASE_CPU0_VIRT + 0x40) + cpu;
 #endif
+#ifdef CONFIG_MSM_CPU_MAX_CLK_1DOT7GHZ
+	unsigned *status = (unsigned *)(CPU_FOOT_PRINT_BASE_CPU0_VIRT + 0x3c) + cpu;
+#endif
 #ifdef CONFIG_MSM_CPU_MAX_CLK_2DOT1GHZ
 	unsigned *status = (unsigned *)(CPU_FOOT_PRINT_BASE_CPU0_VIRT + 0x44) + cpu;
 #endif
@@ -107,6 +110,9 @@ static void set_acpuclk_cpu_freq_foot_print(unsigned cpu, unsigned khz)
 #ifdef CONFIG_MSM_CPU_MAX_CLK_1DOT89GHZ
 	unsigned *status = (unsigned *)(CPU_FOOT_PRINT_BASE_CPU0_VIRT + 0x40) + cpu;
 #endif
+#ifdef CONFIG_MSM_CPU_MAX_CLK_1DOT7GHZ
+	unsigned *status = (unsigned *)(CPU_FOOT_PRINT_BASE_CPU0_VIRT + 0x3c) + cpu;
+#endif
 #ifdef CONFIG_MSM_CPU_MAX_CLK_2DOT1GHZ
 	unsigned *status = (unsigned *)(CPU_FOOT_PRINT_BASE_CPU0_VIRT + 0x44) + cpu;
 #endif
@@ -121,6 +127,9 @@ static void set_acpuclk_L2_freq_foot_print(unsigned khz)
 {
 #ifdef CONFIG_MSM_CPU_MAX_CLK_1DOT89GHZ
 	unsigned *status = (unsigned *)(CPU_FOOT_PRINT_BASE_CPU0_VIRT + 0x32);
+#endif
+#ifdef CONFIG_MSM_CPU_MAX_CLK_1DOT7GHZ
+	unsigned *status = (unsigned *)(CPU_FOOT_PRINT_BASE_CPU0_VIRT + 0x3c);
 #endif
 #ifdef CONFIG_MSM_CPU_MAX_CLK_2DOT1GHZ
 	unsigned *status = (unsigned *)(CPU_FOOT_PRINT_BASE_CPU0_VIRT + 0x32);
@@ -589,11 +598,13 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_slow[] = {
 #ifndef CONFIG_MSM_CPU_MAX_CLK_1DOT5GHZ
 	{ 1, {  1674000, HFPLL, 1, 0, 0x3A }, L2(18), 1275000 },
 	{ 1, {  1728000, HFPLL, 1, 0, 0x3C }, L2(19), 1300000 },
+#ifndef CONFIG_MSM_CPU_MAX_CLK_1DOT7GHZ
 	{ 1, {  1809000, HFPLL, 1, 0, 0x3E }, L2(19), 1325000 },
 	{ 1, {  1890000, HFPLL, 1, 0, 0x40 }, L2(19), 1350000 },
 #ifndef CONFIG_MSM_CPU_MAX_CLK_1DOT89GHZ
 	{ 1, {  1998000, HFPLL, 1, 0, 0x42 }, L2(19), 1350000 },
 	{ 1, {  2106000, HFPLL, 1, 0, 0x44 }, L2(19), 1350000 },
+#endif
 #endif
 #endif
 	{ 0, { 0 } }
@@ -626,11 +637,13 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_nom[] = {
 #ifndef CONFIG_MSM_CPU_MAX_CLK_1DOT5GHZ
 	{ 1, {  1674000, HFPLL, 1, 0, 0x3A }, L2(18), 1225000 },
 	{ 1, {  1728000, HFPLL, 1, 0, 0x3C }, L2(19), 1250000 },
+#ifndef CONFIG_MSM_CPU_MAX_CLK_1DOT7GHZ
 	{ 1, {  1809000, HFPLL, 1, 0, 0x3E }, L2(19), 1275000 },
 	{ 1, {  1890000, HFPLL, 1, 0, 0x40 }, L2(19), 1300000 },
 #ifndef CONFIG_MSM_CPU_MAX_CLK_1DOT89GHZ
 	{ 1, {  1998000, HFPLL, 1, 0, 0x42 }, L2(19), 1325000 },
 	{ 1, {  2106000, HFPLL, 1, 0, 0x44 }, L2(19), 1350000 },
+#endif
 #endif
 #endif
 	{ 0, { 0 } }
@@ -663,11 +676,13 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_fast[] = {
 #ifndef CONFIG_MSM_CPU_MAX_CLK_1DOT5GHZ
 	{ 1, {  1674000, HFPLL, 1, 0, 0x3A }, L2(18), 1175000 },
 	{ 1, {  1728000, HFPLL, 1, 0, 0x3C }, L2(19), 1200000 },
+#ifndef CONFIG_MSM_CPU_MAX_CLK_1DOT7GHZ
 	{ 1, {  1809000, HFPLL, 1, 0, 0x3E }, L2(19), 1250000 },
 	{ 1, {  1890000, HFPLL, 1, 0, 0x40 }, L2(19), 1275000 },
 #ifndef CONFIG_MSM_CPU_MAX_CLK_1DOT89GHZ
 	{ 1, {  1998000, HFPLL, 1, 0, 0x42 }, L2(19), 1300000 },
 	{ 1, {  2106000, HFPLL, 1, 0, 0x44 }, L2(19), 1325000 },
+#endif
 #endif
 #endif
 	{ 0, { 0 } }
@@ -1543,7 +1558,49 @@ static int __cpuinit acpuclock_cpu_callback(struct notifier_block *nfb,
 static struct notifier_block __cpuinitdata acpuclock_cpu_notifier = {
 	.notifier_call = acpuclock_cpu_callback,
 };
+#ifdef CONFIG_CMDLINE_OPTIONS
+/* start cmdline_khz */
+uint32_t acpu_check_khz_value(unsigned long khz)
+{
+   struct clkctl_acpu_speed *f;
 
+        if (khz > 1944000)
+              return CONFIG_MSM_CPU_FREQ_MAX;
+
+        if (khz < 192)
+          return CONFIG_MSM_CPU_FREQ_MIN;
+
+        for (f = acpu_freq_tbl_oc; f->acpuclk_khz != 0; f++) {
+          if (khz < 192000) {
+                     if (f->acpuclk_khz == (khz*1000))
+                               return f->acpuclk_khz;
+                  if ((khz*1000) > f->acpuclk_khz) {
+                              f++;
+                            if ((khz*1000) < f->acpuclk_khz) {
+                                      f--;
+                                    return f->acpuclk_khz;
+                          }
+                               f--;
+                    }
+               }
+               if (f->acpuclk_khz == khz) {
+                    return 1;
+               }
+               if (khz > f->acpuclk_khz) {
+                     f++;
+                    if (khz < f->acpuclk_khz) {
+                             f--;
+                            return f->acpuclk_khz;
+                  }
+                       f--;
+            }
+       }
+
+        return 0;
+}
+EXPORT_SYMBOL(acpu_check_khz_value);
+/* end cmdline_khz */
+#endif
 static const int krait_needs_vmin(void)
 {
 	switch (read_cpuid_id()) {
