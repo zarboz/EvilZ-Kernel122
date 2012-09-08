@@ -30,12 +30,10 @@ VREG_CONSUMERS(L1) = {
 VREG_CONSUMERS(L2) = {
 	REGULATOR_SUPPLY("8921_l2",		NULL),
 	REGULATOR_SUPPLY("dsi_vdda",		"mipi_dsi.1"),
-	REGULATOR_SUPPLY("mipi_csi_vdd",	"msm_csid.0"),
-	REGULATOR_SUPPLY("mipi_csi_vdd",	"msm_csid.1"),
-	REGULATOR_SUPPLY("mipi_csi_vdd",	"msm_csid.2"),
-	REGULATOR_SUPPLY("mipi_csi_vdd",	"4-003d"),
-	REGULATOR_SUPPLY("mipi_csi_vdd",	"4-002d"),
-	REGULATOR_SUPPLY("mipi_csi_vdd",	"4-0045"),
+	REGULATOR_SUPPLY("mipi_csi_vdd",	"4-001a"),
+	REGULATOR_SUPPLY("mipi_csi_vdd",	"4-006c"),
+	REGULATOR_SUPPLY("mipi_csi_vdd",	"4-0048"),
+	REGULATOR_SUPPLY("mipi_csi_vdd",	"4-0020"),
 };
 VREG_CONSUMERS(L3) = {
 	REGULATOR_SUPPLY("8921_l3",		NULL),
@@ -44,12 +42,7 @@ VREG_CONSUMERS(L3) = {
 VREG_CONSUMERS(L4) = {
 	REGULATOR_SUPPLY("8921_l4",		NULL),
 	REGULATOR_SUPPLY("HSUSB_1p8",		"msm_otg"),
-#if defined(CONFIG_BCM4334) || defined(CONFIG_BCM4334_MODULE)
-	REGULATOR_SUPPLY("sdc_vdd",		"msm_sdcc.4"),
-#endif
-#ifdef CONFIG_WCNSS_CORE
 	REGULATOR_SUPPLY("iris_vddxo",		"wcnss_wlan.0"),
-#endif
 };
 VREG_CONSUMERS(L5) = {
 	REGULATOR_SUPPLY("8921_l5",		NULL),
@@ -74,18 +67,14 @@ VREG_CONSUMERS(L9) = {
 };
 VREG_CONSUMERS(L10) = {
 	REGULATOR_SUPPLY("8921_l10",		NULL),
-#ifdef CONFIG_WCNSS_CORE
 	REGULATOR_SUPPLY("iris_vddpa",		"wcnss_wlan.0"),
-#endif
+
 };
 VREG_CONSUMERS(L11) = {
 	REGULATOR_SUPPLY("8921_l11",		NULL),
 	REGULATOR_SUPPLY("cam_vana",		"4-001a"),
 	REGULATOR_SUPPLY("cam_vana",		"4-006c"),
 	REGULATOR_SUPPLY("cam_vana",		"4-0048"),
-	REGULATOR_SUPPLY("cam_vana",		"4-003d"),
-	REGULATOR_SUPPLY("cam_vana",		"4-002d"),
-	REGULATOR_SUPPLY("cam_vana",		"4-0045"),
 	REGULATOR_SUPPLY("cam_vana",		"4-0020"),
 };
 VREG_CONSUMERS(L12) = {
@@ -93,9 +82,6 @@ VREG_CONSUMERS(L12) = {
 	REGULATOR_SUPPLY("cam_vdig",		"4-001a"),
 	REGULATOR_SUPPLY("cam_vdig",		"4-006c"),
 	REGULATOR_SUPPLY("cam_vdig",		"4-0048"),
-	REGULATOR_SUPPLY("cam_vdig",		"4-003d"),
-	REGULATOR_SUPPLY("cam_vdig",		"4-002d"),
-	REGULATOR_SUPPLY("cam_vdig",		"4-0045"),
 	REGULATOR_SUPPLY("cam_vdig",		"4-0020"),
 };
 VREG_CONSUMERS(L14) = {
@@ -110,13 +96,6 @@ VREG_CONSUMERS(L16) = {
 	REGULATOR_SUPPLY("cam_vaf",		"4-001a"),
 	REGULATOR_SUPPLY("cam_vaf",		"4-006c"),
 	REGULATOR_SUPPLY("cam_vaf",		"4-0048"),
-	REGULATOR_SUPPLY("cam_vaf",		"4-003d"),
-	REGULATOR_SUPPLY("cam_vaf",		"4-002d"),
-	REGULATOR_SUPPLY("cam_vaf",		"4-0045"),
-#if defined(CONFIG_FB_MSM_MIPI_BOEOT_TFT_VIDEO_WSVGA_PT_PANEL) \
-	|| defined(CONFIG_FB_MSM_MIPI_SAMSUNG_TFT_VIDEO_WXGA_PT_PANEL)
-	REGULATOR_SUPPLY("lvds_3p3",		"mipi_dsi.1"),
-#endif
 	REGULATOR_SUPPLY("cam_vaf",		"4-0020"),
 };
 VREG_CONSUMERS(L17) = {
@@ -124,11 +103,6 @@ VREG_CONSUMERS(L17) = {
 };
 VREG_CONSUMERS(L18) = {
 	REGULATOR_SUPPLY("8921_l18",		NULL),
-	REGULATOR_SUPPLY("camDVDD",		"4-0045"),
-#if defined(CONFIG_FB_MSM_MIPI_BOEOT_TFT_VIDEO_WSVGA_PT_PANEL) \
-	|| defined(CONFIG_FB_MSM_MIPI_SAMSUNG_TFT_VIDEO_WXGA_PT_PANEL)
-	REGULATOR_SUPPLY("lvds_1p2",	"mipi_dsi.1"),
-#endif /* CONFIG_FB_MSM_MIPI_BOEOT_TFT_VIDEO_WSVGA_PT_PANEL */
 };
 VREG_CONSUMERS(L21) = {
 	REGULATOR_SUPPLY("8921_l21",		NULL),
@@ -146,9 +120,7 @@ VREG_CONSUMERS(L23) = {
 };
 VREG_CONSUMERS(L24) = {
 	REGULATOR_SUPPLY("8921_l24",		NULL),
-#ifdef CONFIG_WCNSS_CORE
 	REGULATOR_SUPPLY("riva_vddmx",		"wcnss_wlan.0"),
-#endif
 };
 VREG_CONSUMERS(L25) = {
 	REGULATOR_SUPPLY("8921_l25",		NULL),
@@ -156,8 +128,6 @@ VREG_CONSUMERS(L25) = {
 	REGULATOR_SUPPLY("CDC_VDDA_A_1P2V",	"tabla-slim"),
 	REGULATOR_SUPPLY("VDDD_CDC_D",		"tabla2x-slim"),
 	REGULATOR_SUPPLY("CDC_VDDA_A_1P2V",	"tabla2x-slim"),
-	REGULATOR_SUPPLY("VDDD_CDC_D",          "1-000d"),
-	REGULATOR_SUPPLY("CDC_VDDA_A_1P2V",     "1-000d"),
 };
 VREG_CONSUMERS(L26) = {
 	REGULATOR_SUPPLY("8921_l26",		NULL),
@@ -173,31 +143,25 @@ VREG_CONSUMERS(L28) = {
 };
 VREG_CONSUMERS(L29) = {
 	REGULATOR_SUPPLY("8921_l29",		NULL),
-	REGULATOR_SUPPLY("cam_vio",		NULL),
 };
 VREG_CONSUMERS(S1) = {
 	REGULATOR_SUPPLY("8921_s1",		NULL),
 };
 VREG_CONSUMERS(S2) = {
 	REGULATOR_SUPPLY("8921_s2",		NULL),
-#ifdef CONFIG_WCNSS_CORE
 	REGULATOR_SUPPLY("iris_vddrfa",		"wcnss_wlan.0"),
-#endif
+
 };
 VREG_CONSUMERS(S3) = {
 	REGULATOR_SUPPLY("8921_s3",		NULL),
 	REGULATOR_SUPPLY("HSUSB_VDDCX",		"msm_otg"),
-#ifdef CONFIG_WCNSS_CORE
 	REGULATOR_SUPPLY("riva_vddcx",		"wcnss_wlan.0"),
-#endif
 	REGULATOR_SUPPLY("HSIC_VDDCX",		"msm_hsic_host"),
 };
 VREG_CONSUMERS(S4) = {
 	REGULATOR_SUPPLY("8921_s4",		NULL),
 	REGULATOR_SUPPLY("sdc_vccq",		"msm_sdcc.1"),
-#ifdef CONFIG_WCNSS_CORE
 	REGULATOR_SUPPLY("riva_vddpx",		"wcnss_wlan.0"),
-#endif
 	REGULATOR_SUPPLY("hdmi_vcc",		"hdmi_msm.0"),
 	REGULATOR_SUPPLY("VDDIO_CDC",		"tabla-slim"),
 	REGULATOR_SUPPLY("CDC_VDD_CP",		"tabla-slim"),
@@ -207,10 +171,6 @@ VREG_CONSUMERS(S4) = {
 	REGULATOR_SUPPLY("CDC_VDD_CP",		"tabla2x-slim"),
 	REGULATOR_SUPPLY("CDC_VDDA_TX",		"tabla2x-slim"),
 	REGULATOR_SUPPLY("CDC_VDDA_RX",		"tabla2x-slim"),
-	REGULATOR_SUPPLY("VDDIO_CDC",           "1-000d"),
-	REGULATOR_SUPPLY("CDC_VDD_CP",          "1-000d"),
-	REGULATOR_SUPPLY("CDC_VDDA_TX",         "1-000d"),
-	REGULATOR_SUPPLY("CDC_VDDA_RX",         "1-000d"),
 	REGULATOR_SUPPLY("vcc_i2c",		"3-005b"),
 	REGULATOR_SUPPLY("EXT_HUB_VDDIO",	"msm_hsic_host"),
 	REGULATOR_SUPPLY("vcc_i2c",		"10-0048"),
@@ -231,17 +191,12 @@ VREG_CONSUMERS(S8) = {
 };
 VREG_CONSUMERS(LVS1) = {
 	REGULATOR_SUPPLY("8921_lvs1",		NULL),
-	/* Changed to L4 */
-	/*REGULATOR_SUPPLY("sdc_vdd",		"msm_sdcc.4"), */
-#ifdef CONFIG_WCNSS_CORE
+	REGULATOR_SUPPLY("sdc_vdd",		"msm_sdcc.4"),
 	REGULATOR_SUPPLY("iris_vddio",		"wcnss_wlan.0"),
-#endif
 };
 VREG_CONSUMERS(LVS2) = {
 	REGULATOR_SUPPLY("8921_lvs2",		NULL),
-#ifdef CONFIG_WCNSS_CORE
 	REGULATOR_SUPPLY("iris_vdddig",		"wcnss_wlan.0"),
-#endif
 };
 VREG_CONSUMERS(LVS3) = {
 	REGULATOR_SUPPLY("8921_lvs3",		NULL),
@@ -256,9 +211,6 @@ VREG_CONSUMERS(LVS5) = {
 	REGULATOR_SUPPLY("cam_vio",		"4-001a"),
 	REGULATOR_SUPPLY("cam_vio",		"4-006c"),
 	REGULATOR_SUPPLY("cam_vio",		"4-0048"),
-	REGULATOR_SUPPLY("cam_vio",		"4-003d"),
-	REGULATOR_SUPPLY("cam_vio",		"4-002d"),
-	REGULATOR_SUPPLY("cam_vio",		"4-0045"),
 	REGULATOR_SUPPLY("cam_vio",		"4-0020"),
 };
 VREG_CONSUMERS(LVS6) = {
@@ -524,9 +476,9 @@ struct gpio_regulator_platform_data msm_gpio_regulator_pdata[] __devinitdata = {
 /* SAW regulator constraints */
 struct regulator_init_data msm_saw_regulator_pdata_s5 =
 	/*	      ID  vreg_name	       min_uV   max_uV */
-	SAW_VREG_INIT(S5, "8921_s5",	       850000, 1350000);
+	SAW_VREG_INIT(S5, "8921_s5",	       850000, 1300000);
 struct regulator_init_data msm_saw_regulator_pdata_s6 =
-	SAW_VREG_INIT(S6, "8921_s6",	       850000, 1350000);
+	SAW_VREG_INIT(S6, "8921_s6",	       850000, 1300000);
 
 /* PM8921 regulator constraints */
 struct pm8xxx_regulator_platform_data
@@ -541,14 +493,9 @@ msm_pm8921_regulator_pdata[] __devinitdata = {
 		0, 2),
 	PM8XXX_NLDO1200(L28, "8921_l28", 0, 1, 1050000, 1050000, 200, "8921_s7",
 		0, 3),
-#if defined(CONFIG_MACH_ESPRESSO_ATT) || defined(CONFIG_MACH_ESPRESSO_VZW) \
-	|| defined(CONFIG_MACH_JAGUAR) || defined(CONFIG_MACH_ESPRESSO10_VZW)
-	PM8XXX_LDO(L29,      "8921_l29", 0, 1, 1800000, 2050000, 200, "8921_s8",
+	PM8XXX_LDO(L29,      "8921_l29", 0, 1, 2050000, 2100000, 200, "8921_s8",
 		0, 4),
-#else
-	PM8XXX_LDO(L29,      "8921_l29", 0, 1, 1800000, 1800000, 200, "8921_s8",
-		0, 4),
-#endif
+
 	/*	     ID        name      always_on pd en_t supply    reg_ID */
 	PM8XXX_VS300(USB_OTG,  "8921_usb_otg",  0, 1, 0,   "ext_5v", 5),
 	PM8XXX_VS300(HDMI_MVS, "8921_hdmi_mvs", 0, 1, 0,   "ext_5v", 6),
@@ -558,56 +505,32 @@ static struct rpm_regulator_init_data
 msm_rpm_regulator_init_data[] __devinitdata = {
 	/*	 ID    a_on pd ss min_uV   max_uV  supply sys_uA freq */
 	RPM_SMPS(S1,	 1, 1, 0, 1225000, 1225000, NULL, 100000, 3p20),
-#ifdef CONFIG_MACH_M2_ATT
-	RPM_SMPS(S2,	 0, 1, 1, 1350000, 1350000, NULL, 0,	  1p60),
-	RPM_LDO(L22,	 0, 1, 0, 2800000, 2800000, NULL,      0, 0),
-#else
 	RPM_SMPS(S2,	 0, 1, 0, 1300000, 1300000, NULL, 0,	  1p60),
-	RPM_LDO(L22,     0, 1, 0, 2750000, 2750000, NULL,      0, 0),
-#endif
 	RPM_SMPS(S3,	 0, 1, 1,  500000, 1150000, NULL, 100000, 4p80),
 	RPM_SMPS(S4,	 1, 1, 0, 1800000, 1800000, NULL, 100000, 1p60),
 	RPM_SMPS(S7,	 0, 1, 0, 1150000, 1150000, NULL, 100000, 3p20),
-	RPM_SMPS(S8,     1, 1, 1, 2100000, 2100000, NULL, 100000, 1p60),
+	RPM_SMPS(S8,	 1, 1, 1, 2100000, 2100000, NULL, 100000, 1p60),
+
 	/*	ID     a_on pd ss min_uV   max_uV  supply  sys_uA init_ip */
 	RPM_LDO(L1,	 1, 1, 0, 1050000, 1050000, "8921_s4", 0, 10000),
-#if defined(CONFIG_FB_MSM_MIPI_BOEOT_TFT_VIDEO_WSVGA_PT_PANEL) \
-	|| defined(CONFIG_FB_MSM_MIPI_SAMSUNG_TFT_VIDEO_WXGA_PT_PANEL)
-	RPM_LDO(L2,	 0, 1, 1, 1200000, 1200000, "8921_s4", 0, 0),
-#else
 	RPM_LDO(L2,	 0, 1, 0, 1200000, 1200000, "8921_s4", 0, 0),
-#endif
 	RPM_LDO(L3,	 0, 1, 0, 3075000, 3075000, NULL,      0, 0),
 	RPM_LDO(L4,	 1, 1, 0, 1800000, 1800000, NULL,      10000, 10000),
 	RPM_LDO(L5,	 0, 1, 0, 2950000, 2950000, NULL,      0, 0),
 	RPM_LDO(L6,	 0, 1, 0, 2950000, 2950000, NULL,      0, 0),
 	RPM_LDO(L7,	 1, 1, 0, 1850000, 2950000, NULL,      10000, 10000),
-	RPM_LDO(L8,	 0, 1, 0, 3000000, 3100000, NULL,      0, 0),
+	RPM_LDO(L8,	 0, 1, 0, 2800000, 3000000, NULL,      0, 0),
 	RPM_LDO(L9,	 0, 1, 0, 2850000, 2850000, NULL,      0, 0),
-#ifdef CONFIG_MACH_JAGUAR
-	RPM_LDO(L10,	 0, 1, 0, 2900000, 2900000, NULL,      0, 0),
-#else
 	RPM_LDO(L10,	 0, 1, 0, 3000000, 3000000, NULL,      0, 0),
-#endif
-	RPM_LDO(L11,	 0, 1, 0, 2800000, 3300000, NULL,      0, 0),
+	RPM_LDO(L11,	 0, 1, 0, 2850000, 2850000, NULL,      0, 0),
 	RPM_LDO(L12,	 0, 1, 0, 1200000, 1200000, "8921_s4", 0, 0),
 	RPM_LDO(L14,	 0, 1, 0, 1800000, 1800000, NULL,      0, 0),
 	RPM_LDO(L15,	 0, 1, 0, 1800000, 2950000, NULL,      0, 0),
-#if defined(CONFIG_FB_MSM_MIPI_BOEOT_TFT_VIDEO_WSVGA_PT_PANEL) \
-	|| defined(CONFIG_FB_MSM_MIPI_SAMSUNG_TFT_VIDEO_WXGA_PT_PANEL)
-	RPM_LDO(L16,	 0, 1, 1, 3300000, 3300000, NULL,      0, 0),
-#else
-	RPM_LDO(L16,	 0, 1, 0, 2800000, 3000000, NULL,      0, 0),
-#endif /* CONFIG_FB_MSM_MIPI_BOEOT_TFT_VIDEO_WSVGA_PT_PANEL */
-	RPM_LDO(L17,	 0, 1, 0, 1800000, 3300000, NULL,      0, 0),
-#if defined(CONFIG_FB_MSM_MIPI_BOEOT_TFT_VIDEO_WSVGA_PT_PANEL) \
-	|| defined(CONFIG_FB_MSM_MIPI_SAMSUNG_TFT_VIDEO_WXGA_PT_PANEL)
-	RPM_LDO(L18,	 0, 1, 1, 1200000, 1500000, "8921_s4", 0, 0),
-#else
-	RPM_LDO(L18,	 0, 1, 0, 1200000, 1500000, "8921_s4", 0, 0),
-#endif
+	RPM_LDO(L16,	 0, 1, 0, 2800000, 2800000, NULL,      0, 0),
+	RPM_LDO(L17,	 0, 1, 0, 1800000, 2950000, NULL,      0, 0),
+	RPM_LDO(L18,	 0, 1, 0, 1300000, 1300000, "8921_s4", 0, 0),
 	RPM_LDO(L21,	 0, 1, 0, 1900000, 1900000, "8921_s8", 0, 0),
-
+	RPM_LDO(L22,	 0, 1, 0, 2750000, 2750000, NULL,      0, 0),
 	RPM_LDO(L23,	 1, 1, 1, 1800000, 1800000, "8921_s8", 10000, 10000),
 	RPM_LDO(L24,	 0, 1, 1,  750000, 1150000, "8921_s1", 10000, 10000),
 	RPM_LDO(L25,	 1, 1, 0, 1225000, 1225000, "8921_s1", 10000, 10000),
@@ -617,14 +540,8 @@ msm_rpm_regulator_init_data[] __devinitdata = {
 	RPM_VS(LVS2,	 0, 1, 0,		    "8921_s1"),
 	RPM_VS(LVS3,	 0, 1, 0,		    "8921_s4"),
 	RPM_VS(LVS4,	 0, 1, 0,		    "8921_s4"),
-#if defined(CONFIG_FB_MSM_MIPI_BOEOT_TFT_VIDEO_WSVGA_PT_PANEL) \
-	|| defined(CONFIG_FB_MSM_MIPI_SAMSUNG_TFT_VIDEO_WXGA_PT_PANEL)
-	RPM_VS(LVS5,	 0, 1, 1,		    NULL),
-	RPM_VS(LVS6,	 0, 1, 1,		    NULL),
-#else
 	RPM_VS(LVS5,	 0, 1, 0,		    "8921_s4"),
 	RPM_VS(LVS6,	 0, 1, 0,		    "8921_s4"),
-#endif
 	RPM_VS(LVS7,	 0, 1, 0,		    "8921_s4"),
 
 	/*	 ID      a_on  ss min_uV   max_uV   supply        freq */
